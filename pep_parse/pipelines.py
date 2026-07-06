@@ -3,13 +3,15 @@ import datetime
 from pathlib import Path
 from collections import defaultdict
 
+from pep_parse.constants import RESULTS_DIR
+
 BASE_DIR = Path(__file__).parent.parent
 
 
 class PepParsePipeline:
     def open_spider(self, spider):
         self.status_counts = defaultdict(int)
-        self.results_dir = BASE_DIR / 'results'
+        self.results_dir = BASE_DIR / RESULTS_DIR
         self.results_dir.mkdir(exist_ok=True)
 
     def process_item(self, item, spider):
