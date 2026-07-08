@@ -32,9 +32,8 @@ class PepParsePipeline:
         with open(filepath, mode='w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f)
 
-            writer.writerow(['Статус', 'Количество'])
+            writer.writerow(['Status', 'Quantity'])
 
-            for status, count in self.status_counts.items():
-                writer.writerow([status, count])
+            writer.writerows(self.status_counts.items())
 
             writer.writerow(['Total', total_peps])

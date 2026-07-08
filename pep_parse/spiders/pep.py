@@ -18,9 +18,9 @@ class PepSpider(scrapy.Spider):
     def parse_pep(self, response):
         page_title = response.css('h1.page-title::text').get()
         if page_title:
-            title_parts = page_title.split(' – ', 1)
-            number = title_parts[0].replace('PEP ', '').strip()
-            name = title_parts[1].strip() if len(title_parts) > 1 else ''
+            pep_part, _, name_part = page_title.partition(' – ')
+            number = pep_part.replace('PEP ', '').strip()
+            name = name_part.strip()
         else:
             number = ''
             name = ''
